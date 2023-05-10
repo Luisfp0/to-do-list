@@ -53,8 +53,88 @@ input {
   background-color: #363f88;
 }
 
+.listaTarefas {
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+  width: 600px;
+  margin: auto;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #363b65;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.item:hover {
+  background-color: #151627;
+}
+
+.item span {
+  width: 100%;
+  color: white;
+  margin-right: 10px;
+  padding: 10px 15px;
+}
+
+.item.completo {
+  display: flex;
+  justify-content: space-between;
+  background-color: #1e1f2e;
+  border: none;
+  margin-bottom: 10px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.item.completo span {
+  width: 100%;
+  color: #4d506e;
+  margin-right: 10px;
+  padding: 10px 15px;
+  text-decoration: line-through;
+}
+
+.del {
+  border: none;
+  background-color: transparent;
+  color: #4d506e;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.del:hover {
+  border: none;
+  background-color: #ff004c;
+  color: white;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.deletAll {
+  border: 1px solid #ff004c;
+  background-color: transparent;
+  padding: 15px;
+  color: #ff004c;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.deletAll:hover {
+  background-color: #ff004c;
+  color: white;
+  cursor: pointer;
+
+}
+
 @media screen and (max-width: 900px){
   form {
+    width: 100%;
+  }
+  .listaTarefas {
     width: 100%;
   }
   
