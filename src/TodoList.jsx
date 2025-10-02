@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import './TodoList.css'
 import Icone from'./assets/public/icon.webp';
 
@@ -13,11 +13,20 @@ function TodoList() {
   },[lista])
 
   function adicionaItem(form) {
+  const dateObject = new Date();
+
+  const day = dateObject.getDate();
+  const monthIndex = dateObject.getMonth();
+  const monthName = dateObject.toLocaleString('pt-BR', { month: 'long' });
+  const year = dateObject.getFullYear();
+  const hour = dateObject.getHours();
+  const minutes = dateObject.getMinutes();
+
     form.preventDefault()
     if(!novoItem) {
       return
     }
-    setLista([...lista, {text: novoItem, isCompleted: false}])
+    setLista([...lista, {text: novoItem, isCompleted: false, date: {day, monthName, monthIndex, year, hour, minutes}}])
     setNovoItem('')
     document.getElementById('input-entrada').focus()
   }
@@ -40,7 +49,7 @@ function TodoList() {
 
   return (
     <div>
-      <h1>Lista de Tarefas</h1>
+      <h1>O que fez nos dias, dailys</h1>
       <form onSubmit={adicionaItem}>
         <input 
           id="input-entrada"
@@ -60,8 +69,18 @@ function TodoList() {
           :
           lista.map((item, index)=>(
             <div key={index} className={item.isCompleted ? 'item completo' : 'item'}>
-              <span onClick={()=>{clicou(index)}}>{item.text}</span>
-              <button onClick={()=>{deleta(index)}} className="del">Deletar</button>
+              <span className="teste" onClick={()=>{clicou(index)}}>{item.text}</span>
+              <div >
+                <span onClick={()=>{clicou(index)}}>{item.date.day}/</span>
+                <span onClick={()=>{clicou(index)}}>{item.date.monthIndex}/</span>
+                <span onClick={()=>{clicou(index)}}>{item.date.year}</span>
+                <span onClick={()=>{clicou(index)}}> - </span>
+                <span onClick={()=>{clicou(index)}}>{item.date.hour}:</span>
+                <span onClick={()=>{clicou(index)}}>{item.date.minutes}</span>
+              </div>
+              <div className="item">
+                <button onClick={()=>{deleta(index)}} className="del">Deletar</button>
+              </div>
             </div>
           ))
         } 
